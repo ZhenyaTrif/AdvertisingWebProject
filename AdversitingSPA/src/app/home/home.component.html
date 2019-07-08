@@ -1,0 +1,14 @@
+<div class="card m-5" style="width:35rem" *ngIf="userDetails">
+    <h1>My profile</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>User name: </strong>{{userDetails.userName}}
+        </li>
+        <li class="list-group-item">
+            <strong>Full name: </strong>{{userDetails.fullName}}
+        </li>
+        <li class="list-group-item">
+            <strong>Email: </strong>{{userDetails.email}}
+        </li>
+    </ul>
+</div>

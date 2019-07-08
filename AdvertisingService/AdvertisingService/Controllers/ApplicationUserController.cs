@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using AdvertisingService.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AdvertisingService.Controllers
 {
@@ -17,16 +22,33 @@ namespace AdvertisingService.Controllers
 
         private SignInManager<ApplicationUser> _signInManager;
 
-        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private ApplicationSettings _applicationSettings;
+
+        public ApplicationUserController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IOptions<ApplicationSettings> appOptions)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _applicationSettings = appOptions.Value;
         }
 
         [HttpPost]
         [Route("Register")]
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
+
+            if (model.Password == "mod19ER82")
+            {
+                model.Role = "Moder";
+            }
+            else if(model.Password == "ad19MIN56")
+            {
+                model.Role = "Admin";
+            }
+            else
+            {
+                model.Role = "User";
+            }
+
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -37,11 +59,50 @@ namespace AdvertisingService.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
+
                 return Ok(result);
             }
             catch(Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<Object> Login(LoginModel model)
+        {
+            var user = await _userManager.FindByNameAsync(model.UserName);
+
+            if(user !=null && await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+                var role = await _userManager.GetRolesAsync(user);
+
+                IdentityOptions _identityOptions = new IdentityOptions();
+
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim("UserID", user.Id.ToString()),
+                        new Claim(_identityOptions.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_applicationSettings.JWT_secret)), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+
+                var token = tokenHandler.WriteToken(securityToken);
+
+                return Ok(new { token });
+            }
+            else
+            {
+                return BadRequest(new { message = "User or password is incorrect." });
             }
         }
     }
