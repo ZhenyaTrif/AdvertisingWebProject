@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Advertising.Dal.Contexts;
 using Advertising.DI;
 using AdvertisingService.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -49,6 +50,8 @@ namespace AdvertisingService
             });
 
             services.IoCCommonRegister(Configuration);
+
+            services.AddDbContext<AdvertisingServiceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AdvertisingConnection")));
 
             services.AddCors();
 

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Advertising.Bll", "Advertis
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{95CB15C9-9DAA-4B6F-8DB9-C5D906F91E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Advertising.DI", "Advertising.DI\Advertising.DI.csproj", "{13B78CE2-E797-4A53-9944-D7F2A2C1357A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Advertising.DI", "Advertising.DI\Advertising.DI.csproj", "{13B78CE2-E797-4A53-9944-D7F2A2C1357A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

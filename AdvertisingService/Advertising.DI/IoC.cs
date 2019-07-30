@@ -1,4 +1,8 @@
-﻿using Advertising.Dal.DataAccess;
+﻿using Advertising.Bll.BusinessLogic;
+using Advertising.Bll.BusinessLogic.Interfaces;
+using Advertising.Bll.Services;
+using Advertising.Bll.Services.Interfaces;
+using Advertising.Dal.DataAccess;
 using Advertising.Dal.DataAccess.Interfaces;
 using Advertising.Dal.Repositories;
 using Advertising.Dal.Repositories.Interfaces;
@@ -15,10 +19,9 @@ namespace Advertising.DI
             services.AddTransient<IAdvertisingRepository, AdvertisingRepository>();
             services.AddTransient<IAdvertisingCategoryRepository, AdvertisingCategoryRepository>();
 
-            //services.AddTransient<IBusinessLogic, BusinessLogic>();
-            //services.AddTransient<INoteEntityService, NoteEntityService>();
-            //services.AddTransient<INoteCategoryService, NoteCategoryService>();
-            //services.AddTransient<INoteSortService, SortService>();
+            services.AddTransient<IBusinessLogic, BusinessLogic>();
+            services.AddTransient<IAdvertisingEntityService, AdvertisingEntityService>();
+            services.AddTransient<IAdvertisingCategoryService, AdvertisingCategoryService>();
         }
     }
 }
