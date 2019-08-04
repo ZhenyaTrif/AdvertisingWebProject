@@ -10,6 +10,7 @@ namespace Common.Entity
         [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Text { get; set; }
 
         public string ImagePath { get; set; }
