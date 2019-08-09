@@ -15,6 +15,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AuthIntercepter } from './auth/auth.interceptor';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdvertisingComponent } from './advertising-panel/advertising/advertising.component';
+import { AdvertisingCategoryComponent } from './advertising-panel/advertising-category/advertising-category.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AdvertisingComponent,
+    AdvertisingCategoryComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

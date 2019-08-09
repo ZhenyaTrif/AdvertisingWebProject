@@ -9,19 +9,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  userDetails;
-
-  constructor(private router: Router, private service: UserService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.userDetails = res;
-      },
-      err => {
-        console.log(err);
-      }
-    )
   }
 
 }

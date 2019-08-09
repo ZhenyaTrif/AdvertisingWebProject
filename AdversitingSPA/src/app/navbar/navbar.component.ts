@@ -8,9 +8,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  isLogined;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('token') != null){
+      this.isLogined = false;
+    }
+    else{
+      this.isLogined = true;
+    }
   }
 
   onLogout(){
