@@ -71,7 +71,7 @@ namespace AdvertisingService.Controllers
 
             if (advertisingCategory == null)
             {
-                _advertisingCategory = await db.AdvertisingCategories.CreateAsync(new AdvertisingCategory { Name = "Новая категория" });
+                _advertisingCategory = await db.AdvertisingCategories.CreateAsync(new AdvertisingCategory { CategoryName = "Новая категория" });
 
                 return Ok(_advertisingCategory);
             }

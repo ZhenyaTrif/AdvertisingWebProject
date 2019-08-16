@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class UserService {
 
-  readonly BaseURL = 'http://localhost:53285/api'
+  readonly BaseURL = 'http://localhost:53285/api';
 
   constructor(private fb:FormBuilder, private httpClient: HttpClient) { }
 

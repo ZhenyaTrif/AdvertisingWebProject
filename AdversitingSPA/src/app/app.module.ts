@@ -18,6 +18,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdvertisingComponent } from './advertising-panel/advertising/advertising.component';
 import { AdvertisingCategoryComponent } from './advertising-panel/advertising-category/advertising-category.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { AdvertisingListComponent } from './advertising-panel/advertising-list/advertising-list.component';
+import { AdvertisingService } from './shared/advertising.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     AdminPanelComponent,
     AdvertisingComponent,
     AdvertisingCategoryComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AdvertisingListComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     provide: HTTP_INTERCEPTORS,
     useClass: AuthIntercepter,
     multi: true
-  }],
+  }, AdvertisingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

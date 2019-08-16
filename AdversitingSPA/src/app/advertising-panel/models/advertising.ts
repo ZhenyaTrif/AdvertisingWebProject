@@ -2,7 +2,7 @@ export class Advertising {
 
     public id: number;
 
-    public name: string;
+    public advertisingName: string;
 
     public text: string;
 

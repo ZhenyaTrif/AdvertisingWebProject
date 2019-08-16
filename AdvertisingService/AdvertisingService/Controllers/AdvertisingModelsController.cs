@@ -72,7 +72,7 @@ namespace AdvertisingService.Controllers
             {
                 advertising = await db.Advertisings.CreateAsync(new AdvertisingModel
                 {
-                    Name = "",
+                    AdvertisingName = "",
                     Text = "",
                     ImagePath = "",
                     AdvertisingCategoryId = 0

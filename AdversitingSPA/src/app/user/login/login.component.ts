@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.service.login(form.value).subscribe(
       (res: any)=>{
         localStorage.setItem('token', res.token);
-        this.router.navigateByUrl('/home');
+        window.location.href = "home";
       },
       (err: any)=>{
         if(err.status == 400){
@@ -38,6 +38,6 @@ export class LoginComponent implements OnInit {
           console.log(err);
         }
       }
-    )
+    );
   }
 }

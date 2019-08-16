@@ -8,7 +8,7 @@ namespace Common.Entity
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string AdvertisingName { get; set; }
 
         [Required]
         public string Text { get; set; }

@@ -7,6 +7,6 @@ namespace Advertising.Dal.Repositories.Interfaces
 {
     public interface IAdvertisingRepository : IRepository<AdvertisingModel>
     {
-        Task<IEnumerable<AdvertisingModel>> GetByAdvertisingCategoryId(int noteCategoryId);
+        Task<IEnumerable<AdvertisingModel>> GetByAdvertisingCategoryId(int advertisingCategoryId);
     }
 }

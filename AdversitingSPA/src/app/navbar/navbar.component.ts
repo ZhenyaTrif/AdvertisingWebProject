@@ -8,21 +8,25 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  isLogined;
+  visibility: boolean = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){
-      this.isLogined = false;
+      this.visibility = false;
     }
     else{
-      this.isLogined = true;
+      this.visibility = true;
     }
   }
 
   onLogout(){
     localStorage.removeItem('token');
-    this.router.navigate(['/user/login']);
+    window.location.href = "user/login";
+  }
+
+  createAd(){
+    this.router.navigate(['/ad-create']);
   }
 }
