@@ -80,6 +80,10 @@ namespace AdvertisingService.Controllers
 
                 return Ok(advertising);
             }
+            else if (advertisingModel.ImagePath == null || advertisingModel.ImagePath == "")
+            {
+                advertisingModel.ImagePath = "/assets/images/no_photo.png";
+            }
 
             advertising = await db.Advertisings.CreateAsync(advertisingModel);
 

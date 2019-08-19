@@ -38,15 +38,15 @@ namespace AdvertisingService.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Moder")]
-        [Route("ForAdminOrModer")]
+        [Authorize(Roles = "Admin")]
+        [Route("ForAdmin")]
         public string GetForAdminOrModer()
         {
-            return "Web method for Admin or Moder";
+            return "Web method for Admin";
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Moder,User")]
+        [Authorize(Roles = "Admin,User")]
         [Route("ForUsers")]
         public string GetForEveryone()
         {

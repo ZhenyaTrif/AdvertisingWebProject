@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  visibility: boolean = true;
+  visibility: boolean = false;
+  admin: boolean = true; 
 
   constructor(private router: Router) { }
 

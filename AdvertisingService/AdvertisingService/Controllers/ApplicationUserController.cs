@@ -36,11 +36,7 @@ namespace AdvertisingService.Controllers
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
 
-            if (model.Password == "mod19ER82")
-            {
-                model.Role = "Moder";
-            }
-            else if(model.Password == "ad19MIN56")
+            if(model.Password == "ad19MIN56")
             {
                 model.Role = "Admin";
             }

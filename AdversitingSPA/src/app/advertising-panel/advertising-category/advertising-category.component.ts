@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdvertisingService } from 'src/app/shared/advertising.service';
 
 @Component({
   selector: 'app-advertising-category',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvertisingCategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AdvertisingService) { }
 
   ngOnInit() {
   }

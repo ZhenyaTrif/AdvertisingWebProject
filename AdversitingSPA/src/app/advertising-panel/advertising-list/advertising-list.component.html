@@ -1,1 +1,15 @@
-<p>advertising-list works!</p>
+<div class="container-fluid">
+    <div class="media" *ngFor="let ad of service.list">
+        <div class="media-left">
+            <img src="{{ad.imagePath}}" class="media-object" routerLink="ad-details/{{ad.id}}" width="100" height="100" />
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">
+                <a routerLink="ad-details/{{ad.id}}">{{ad.advertisingName}}</a>
+            </h3>
+            <p>{{ad.text}}</p>
+        </div>
+    </div>
+</div>
+
+<!---->

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdvertisingService } from 'src/app/shared/advertising.service';
+import { Advertising } from '../models/advertising';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-advertising-list',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdvertisingListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AdvertisingService, private router: Router) { }
 
   ngOnInit() {
+    this.service.updateList();
   }
 
 }

@@ -12,7 +12,6 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { UserService } from './shared/user.service';
 import { LoginComponent } from './user/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
 import { AuthIntercepter } from './auth/auth.interceptor';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdvertisingComponent } from './advertising-panel/advertising/advertising.component';
@@ -20,6 +19,8 @@ import { AdvertisingCategoryComponent } from './advertising-panel/advertising-ca
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { AdvertisingListComponent } from './advertising-panel/advertising-list/advertising-list.component';
 import { AdvertisingService } from './shared/advertising.service';
+import { AdvertisingDetailsComponent } from './advertising-panel/advertising-details/advertising-details.component';
+import { AdvertisingCategoryListComponent } from './advertising-panel/advertising-category-list/advertising-category-list.component';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,13 @@ import { AdvertisingService } from './shared/advertising.service';
     RegistrationComponent,
     LoginComponent,
     NavbarComponent,
-    HomeComponent,
     AdminPanelComponent,
     AdvertisingComponent,
     AdvertisingCategoryComponent,
     UserProfileComponent,
-    AdvertisingListComponent
+    AdvertisingListComponent,
+    AdvertisingDetailsComponent,
+    AdvertisingCategoryListComponent
   ],
   imports: [
     BrowserModule,
