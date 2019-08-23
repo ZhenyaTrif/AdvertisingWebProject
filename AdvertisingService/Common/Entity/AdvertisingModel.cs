@@ -15,6 +15,8 @@ namespace Common.Entity
 
         public string ImagePath { get; set; }
 
+        public string ItemPrice { get; set; }
+
         [Required]
         public int AdvertisingCategoryId { get; set; }
     }

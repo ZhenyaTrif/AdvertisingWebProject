@@ -1,11 +1,14 @@
 <div class="card" *ngIf="adDetails">
-    <h2>{{adDetails.advertisingName}}</h2>
+    <h2 class="col">{{adDetails.advertisingName}}</h2>
     <ul class="list-group">
         <li class="list-group-item">
             <img src="{{adDetails.imagePath}}" class="mx-auto d-block" width="300" height="300">
         </li>
         <li class="list-group-item">
-            <strong>Категория: </strong>{{adDetails.advertisingCategoryId}}
+            <strong>Стоимость: </strong>{{adDetails.itemPrice}}
+        </li>
+        <li class="list-group-item">
+            <strong>Категория: </strong>{{adDetails.categoryName}}
         </li>
         <li class="list-group-item">
             <strong>Описание: </strong>{{adDetails.text}}

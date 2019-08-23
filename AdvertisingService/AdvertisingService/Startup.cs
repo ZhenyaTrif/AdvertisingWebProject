@@ -51,7 +51,7 @@ namespace AdvertisingService
 
             services.IoCCommonRegister(Configuration);
 
-            services.AddDbContext<AdvertisingServiceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AdvertisingConnection")));
+            services.AddDbContext<AdvertisingServiceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AdvertisingConnection"), b => b.MigrationsAssembly("AdvertisingService")));
 
             services.AddCors();
 

@@ -13,6 +13,7 @@ export class AdvertisingComponent implements OnInit {
   constructor(private service: AdvertisingService, private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.service.updateCList();
     this.resetForm();
   }
 
@@ -25,6 +26,7 @@ export class AdvertisingComponent implements OnInit {
       advertisingName: '',
       text: '',
       imagePath: '',
+      itemPrice: '',
       advertisingCategoryId: 0
     }
   }

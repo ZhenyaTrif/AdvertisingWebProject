@@ -10,23 +10,29 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AdvertisingDetailsComponent implements OnInit {
 
   adDetails;
-  id: number;
+  adCategory;
+  adId: number;
   private sub: any;
 
   constructor(private service: AdvertisingService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']
+      this.adId = +params['id']
     });
-    this.service.getAdDetails(this.id).subscribe(
+
+    this.getDetails();
+  }
+
+  getDetails(){
+    this.service.getAdDetails(this.adId).subscribe(
       res => {
         this.adDetails = res;
       },
       err => {
         console.log(err);
       }
-    )
+    );
   }
 
 }

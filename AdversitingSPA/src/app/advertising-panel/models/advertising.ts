@@ -8,5 +8,7 @@ export class Advertising {
 
     public imagePath: string;
 
+    public itemPrice: string;
+
     public advertisingCategoryId: number;
 }

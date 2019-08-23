@@ -1,7 +1,11 @@
 ﻿using Advertising.Bll.BusinessLogic.Interfaces;
+using AdvertisingService.Models;
 using Common.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AdvertisingService.Controllers
@@ -24,6 +28,41 @@ namespace AdvertisingService.Controllers
             return await db.Advertisings.GetAllAsync();
         }
 
+        [HttpGet]
+        [Route("categoryid={categoryId}/page={page}")]
+        [Route("categoryid={categoryId}/title={title}/page={page}")]
+        public async Task<IActionResult> ChangePage(string title = null, int? categoryId = 0, int page = 1)
+        {
+            int pageSize = 10;
+
+            IEnumerable<AdvertisingModel> ads = await db.Advertisings.GetAllAsync();
+
+            if (categoryId != null && categoryId != 0)
+            {
+                ads = ads.Where(p => p.AdvertisingCategoryId == categoryId);
+            }
+            if (!String.IsNullOrEmpty(title))
+            {
+                ads = ads.Where(p => p.AdvertisingName.Contains(title));
+            }
+
+            var count = ads.Count();
+
+            var items = ads.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            SearchListModel viewModel = new SearchListModel
+            {
+                PageModel = new PageModel(count, page, pageSize),
+                FilterModel = new FilterModel(await db.AdvertisingCategories.GetAllAsync(), categoryId, title),
+                Ads = items
+            };
+
+            return Ok(viewModel);
+
+
+            //return await db.Advertisings.GetAllAsync();
+        }
+
         // GET: api/AdvertisingModels/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -33,14 +72,27 @@ namespace AdvertisingService.Controllers
                 return BadRequest();
             }
 
-            var advertising = await db.Advertisings.GetItemByIdAsync(id);
+            AdvertisingModel advertising = await db.Advertisings.GetItemByIdAsync(id);
 
             if (advertising == null)
             {
                 return NotFound();
             }
 
-            return Ok(advertising);
+            var category = await db.AdvertisingCategories.GetItemByIdAsync(advertising.AdvertisingCategoryId);
+
+            AdFullModel adFullModel = new AdFullModel
+            {
+                Id = advertising.Id,
+                AdvertisingName = advertising.AdvertisingName,
+                Text = advertising.Text,
+                ImagePath = advertising.ImagePath,
+                ItemPrice = advertising.ItemPrice,
+                AdvertisingCategoryId = advertising.AdvertisingCategoryId,
+                CategoryName = category.CategoryName
+            };
+
+            return Ok(adFullModel);
         }
 
         // PUT: api/AdvertisingModels/5
@@ -75,6 +127,7 @@ namespace AdvertisingService.Controllers
                     AdvertisingName = "",
                     Text = "",
                     ImagePath = "",
+                    ItemPrice = "",
                     AdvertisingCategoryId = 0
                 });
 
@@ -83,6 +136,15 @@ namespace AdvertisingService.Controllers
             else if (advertisingModel.ImagePath == null || advertisingModel.ImagePath == "")
             {
                 advertisingModel.ImagePath = "/assets/images/no_photo.png";
+            }
+
+            if(advertisingModel.ItemPrice == null || advertisingModel.ItemPrice == "")
+            {
+                advertisingModel.ItemPrice = "Договорная";
+            }
+            else
+            {
+                advertisingModel.ItemPrice += " р.";
             }
 
             advertising = await db.Advertisings.CreateAsync(advertisingModel);

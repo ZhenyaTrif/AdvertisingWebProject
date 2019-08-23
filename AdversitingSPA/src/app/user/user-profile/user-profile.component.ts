@@ -24,4 +24,11 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
+  deleteAccount(){
+
+  }
+
+  changePassword(){
+    
+  }
 }

@@ -27,9 +27,21 @@
                 <div class="input-group-text">
                     <i class="fas fa-image"></i>
                 </div>
-                <input name="imagePath" #imagePath="ngModel" [(ngModel)]="service.formData.imagePath" class="form-control"
-                    placeholder="Путь картинки" required>
+                <input name="imagePath" #imagePath="ngModel" [(ngModel)]="service.formData.imagePath"
+                    class="form-control" placeholder="Путь картинки" required>
             </div>
+        </div>
+        <div class="form-group">
+            <h5>Стоимость</h5>
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <input name="itemPrice" #itemPrice="ngModel" [(ngModel)]="service.formData.itemPrice"
+                    class="form-control" placeholder="Стоимость">
+            </div>
+            <span><i class="fas fa-exclamation-circle"></i> </span>
+                    <span>Если не указать стоимость, то она будет установлена как "Договорная".</span>
         </div>
         <div class="form-group">
             <div class="btn-group-prepend">
@@ -37,12 +49,10 @@
                     <h5>Категория</h5>
                 </div>
                 <select class="form-control" name="advertisingCategoryId" #advertisingCategoryId="ngModel"
-                    [(ngModel)]="service.formData.advertisingCategoryId" required>
-                    <option value="1">Телефоны</option>
-                    <option value="2">Гарнитуры</option>
-                    <option value="3">Зарядные устройства</option>
-                    <option value="4">Чехлы</option>
-                    <option value="5">Карты памяти</option>
+                    [(ngModel)]="service.formData.advertisingCategoryId">
+                    <option *ngFor="let category of service.clist" [value]="category.id">
+                            {{category.categoryName}}
+                          </option>
                 </select>
             </div>
         </div>

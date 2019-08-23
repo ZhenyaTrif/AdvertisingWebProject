@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { AdvertisingListComponent } from './advertising-panel/advertising-list/a
 import { AdvertisingService } from './shared/advertising.service';
 import { AdvertisingDetailsComponent } from './advertising-panel/advertising-details/advertising-details.component';
 import { AdvertisingCategoryListComponent } from './advertising-panel/advertising-category-list/advertising-category-list.component';
+import { AdvertisingCategoryMenuComponent } from './advertising-panel/advertising-category-menu/advertising-category-menu.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { AdvertisingCategoryListComponent } from './advertising-panel/advertisin
     UserProfileComponent,
     AdvertisingListComponent,
     AdvertisingDetailsComponent,
-    AdvertisingCategoryListComponent
+    AdvertisingCategoryListComponent,
+    AdvertisingCategoryMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,9 @@ import { AdvertisingCategoryListComponent } from './advertising-panel/advertisin
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbModule,
+    NgbPaginationModule
   ],
   providers: [UserService, {
     provide: HTTP_INTERCEPTORS,

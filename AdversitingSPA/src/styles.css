@@ -1,14 +1,18 @@
 input.ng-touched.ng-invalid{
-    border-color: red;
+  border-color: red;
 }
 
 body {
-    background-image: url("assets/images/phone.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
+  background-image: url("assets/images/phone.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
-  .vertical-center {
-    height:100%;
-    width:100%;
-  }
+table tr:hover{
+  cursor: pointer;
+}
+
+.vertical-center {
+  height:100%;
+  width:100%;
+}

@@ -103,7 +103,7 @@ namespace AdvertisingService.Controllers
             {
                 foreach (var advertising in advertisings)
                 {
-                    advertising.Id = 0;
+                    advertising.AdvertisingCategoryId = 0;
                     await db.Advertisings.UpdateAsync(advertising);
                 }
             }

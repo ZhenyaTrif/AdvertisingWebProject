@@ -1,5 +1,6 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit()">
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <div class="form-group">
+        <input type="hidden" name="id" [value]="service.formCData.id">
         <h5>Название категории</h5>
         <input name="categoryName" #categoryName="ngModel" [(ngModel)]="service.formCData.categoryName" class="form-control" placeholder="Название категории" required minlength="1">
     </div>
