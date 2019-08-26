@@ -7,7 +7,7 @@ namespace AdvertisingService.Models
     {
         public AuthenticationContext(DbContextOptions<AuthenticationContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }

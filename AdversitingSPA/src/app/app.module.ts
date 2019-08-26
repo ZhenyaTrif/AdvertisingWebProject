@@ -38,7 +38,7 @@ import { AdvertisingCategoryMenuComponent } from './advertising-panel/advertisin
     AdvertisingListComponent,
     AdvertisingDetailsComponent,
     AdvertisingCategoryListComponent,
-    AdvertisingCategoryMenuComponent
+    AdvertisingCategoryMenuComponent,
   ],
   imports: [
     BrowserModule,
