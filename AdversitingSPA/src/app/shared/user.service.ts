@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ChangePassword } from '../user/models/change-password';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  readonly BaseURL = 'http://localhost:53285/api'
+  readonly BaseURL = 'http://localhost:53285/api';
 
   constructor(private fb:FormBuilder, private httpClient: HttpClient) { }
 
@@ -19,7 +20,9 @@ export class UserService {
       Password:['', [Validators.required, Validators.minLength(6)]],
       ConfirmPassword:['', Validators.required]
     },{ validator: this.comparePasswords})
-  })
+  });
+
+  passModel: ChangePassword;
 
   comparePasswords(fb: FormGroup){
     let confirmPasswordCtrl = fb.get('ConfirmPassword');
@@ -33,6 +36,10 @@ export class UserService {
     }
   }
 
+  changePassword(passModel: ChangePassword){
+    return this.httpClient.post(this.BaseURL+'/UserProfile/ChangePassword', passModel);
+  }
+
   register(){
     let body ={
       UserName: this.formModel.value.UserName,
@@ -40,6 +47,7 @@ export class UserService {
       FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password
     }
+    console.log(body);
     return this.httpClient.post(this.BaseURL+'/ApplicationUser/Register', body);
   }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Advertising.Dal.Contexts;
 using AdvertisingService.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +12,7 @@ namespace AdvertisingService.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public ValuesController(AuthenticationContext context)
+        public ValuesController(AuthenticationContext context, AdvertisingServiceContext advertisingServiceContext)
         {
 
         }

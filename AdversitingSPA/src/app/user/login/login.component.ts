@@ -28,16 +28,16 @@ export class LoginComponent implements OnInit {
     this.service.login(form.value).subscribe(
       (res: any)=>{
         localStorage.setItem('token', res.token);
-        this.router.navigateByUrl('/home');
+        window.location.href = "home";
       },
       (err: any)=>{
         if(err.status == 400){
-          this.toastr.error('Incorrect UserName or Password.', 'Authentification Failed.');
+          this.toastr.error('Неверное Имя пользователя или пароль.', 'Ошибка авторизации.');
         }
         else{
           console.log(err);
         }
       }
-    )
+    );
   }
 }

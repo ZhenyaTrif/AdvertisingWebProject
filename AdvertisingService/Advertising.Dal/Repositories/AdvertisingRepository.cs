@@ -51,6 +51,13 @@ namespace Advertising.Dal.Repositories
             return await db.Advertisings.ToListAsync();
         }
 
+        public async Task<IEnumerable<AdvertisingModel>> GetByAdvertisingCategoryId(int advertisingCategoryId)
+        {
+            var ads = (await GetAllAsync()) as List<AdvertisingModel>;
+
+            return ads.FindAll(note => note.AdvertisingCategoryId == advertisingCategoryId);
+        }
+
         public async Task<AdvertisingModel> GetItemByIdAsync(int id)
         {
             return await db.Advertisings.FindAsync(id);
