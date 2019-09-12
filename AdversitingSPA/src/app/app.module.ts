@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
@@ -22,7 +22,8 @@ import { AdvertisingListComponent } from './advertising-panel/advertising-list/a
 import { AdvertisingService } from './shared/advertising.service';
 import { AdvertisingDetailsComponent } from './advertising-panel/advertising-details/advertising-details.component';
 import { AdvertisingCategoryListComponent } from './advertising-panel/advertising-category-list/advertising-category-list.component';
-import { AdvertisingCategoryMenuComponent } from './advertising-panel/advertising-category-menu/advertising-category-menu.component';
+import { UserAdsComponent } from './user/user-profile/user-ads/user-ads.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { AdvertisingCategoryMenuComponent } from './advertising-panel/advertisin
     AdvertisingListComponent,
     AdvertisingDetailsComponent,
     AdvertisingCategoryListComponent,
-    AdvertisingCategoryMenuComponent,
+    UserAdsComponent
   ],
   imports: [
     BrowserModule,

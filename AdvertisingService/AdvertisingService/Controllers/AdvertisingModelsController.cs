@@ -1,6 +1,7 @@
 ﻿using Advertising.Bll.BusinessLogic.Interfaces;
 using AdvertisingService.Models;
 using Common.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -58,9 +59,6 @@ namespace AdvertisingService.Controllers
             };
 
             return Ok(viewModel);
-
-
-            //return await db.Advertisings.GetAllAsync();
         }
 
         // GET: api/AdvertisingModels/5
@@ -89,14 +87,34 @@ namespace AdvertisingService.Controllers
                 ImagePath = advertising.ImagePath,
                 ItemPrice = advertising.ItemPrice,
                 AdvertisingCategoryId = advertising.AdvertisingCategoryId,
-                CategoryName = category.CategoryName
+                CategoryName = category.CategoryName,
+                UserId = advertising.UserId
             };
 
             return Ok(adFullModel);
         }
 
+        [HttpGet]
+        [Route("UsersAdvertisings")]
+        public async Task<IActionResult> GetUsersAdvertisings()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+
+            IEnumerable<AdvertisingModel> ads = await db.Advertisings.GetAllAsync();
+
+            if (userId == null || userId == "")
+            {
+                return BadRequest();
+            }
+
+            ads = ads.Where(p => p.UserId == userId);
+
+            return Ok(ads);
+        }
+
         // PUT: api/AdvertisingModels/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(int id, AdvertisingModel advertisingModel)
         {
             if (advertisingModel == null)
@@ -116,6 +134,7 @@ namespace AdvertisingService.Controllers
 
         // POST: api/AdvertisingModels
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post(AdvertisingModel advertisingModel)
         {
             AdvertisingModel advertising;
@@ -128,8 +147,9 @@ namespace AdvertisingService.Controllers
                     Text = "",
                     ImagePath = "",
                     ItemPrice = "",
-                    AdvertisingCategoryId = 0
-                });
+                    AdvertisingCategoryId = 0,
+                    UserId = ""
+            });
 
                 return Ok(advertising);
             }
@@ -147,6 +167,8 @@ namespace AdvertisingService.Controllers
                 advertisingModel.ItemPrice += " р.";
             }
 
+            advertisingModel.UserId = User.Claims.First(c => c.Type == "UserID").Value;
+
             advertising = await db.Advertisings.CreateAsync(advertisingModel);
 
             return Ok(advertising);
@@ -154,6 +176,7 @@ namespace AdvertisingService.Controllers
 
         // DELETE: api/AdvertisingModels/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)

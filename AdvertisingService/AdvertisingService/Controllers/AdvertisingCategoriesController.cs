@@ -1,5 +1,6 @@
 ﻿using Advertising.Bll.BusinessLogic.Interfaces;
 using Common.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace AdvertisingService.Controllers
 
         // PUT: api/AdvertisingCategories/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Put(int id, AdvertisingCategory advertisingCategory)
         {
             if (advertisingCategory == null)
@@ -65,6 +67,7 @@ namespace AdvertisingService.Controllers
 
         // POST: api/AdvertisingCategories
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post(AdvertisingCategory advertisingCategory)
         {
             AdvertisingCategory _advertisingCategory;
@@ -83,6 +86,7 @@ namespace AdvertisingService.Controllers
 
         // DELETE: api/AdvertisingCategories/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)

@@ -19,5 +19,7 @@ namespace Common.Entity
 
         [Required]
         public int AdvertisingCategoryId { get; set; }
+
+        public string UserId { get; set; }
     }
 }

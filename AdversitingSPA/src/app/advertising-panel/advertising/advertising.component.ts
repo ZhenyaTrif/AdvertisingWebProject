@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdvertisingComponent implements OnInit {
 
-  constructor(private service: AdvertisingService, private toastr: ToastrService) { }
+  constructor(public service: AdvertisingService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.service.updateCList();
@@ -27,20 +27,21 @@ export class AdvertisingComponent implements OnInit {
       text: '',
       imagePath: '',
       itemPrice: '',
-      advertisingCategoryId: 0
-    }
+      advertisingCategoryId: 1,
+      userId: ''
+    };
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
     this.service.postAdvertising(form.value).subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success("Объявление успешно размещено.", "Одобрено.");
+        this.toastr.success('Объявление успешно размещено.', 'Одобрено.');
       },
       err => {
         console.log(err);
       }
     );
-    window.location.href = "home";
+    window.location.href = 'home';
   }
 }

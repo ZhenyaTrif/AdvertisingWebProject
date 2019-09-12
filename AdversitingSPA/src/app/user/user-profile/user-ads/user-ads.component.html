@@ -1,0 +1,15 @@
+<table class="table table-hover" style="background-color: rgba(250, 242, 221, 0.65);">
+    <thead style="background-color: rgba(250, 242, 221, 0.6);">
+        <tr>
+            <th>Мои объявления</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-dark" *ngFor="let ad of service.personalList">
+            <td>{{ad.advertisingName}}</td>
+            <td>
+                <button type="button" class="btn btn-danger btn-block" (click)="deleteAdvertising(ad)">Удалить</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

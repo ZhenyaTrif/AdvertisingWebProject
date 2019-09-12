@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvertisingService.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20190830081418_InitialCreate")]
+    [Migration("20190912080437_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,14 +48,14 @@ namespace AdvertisingService.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "6e10fbed-ca4d-4995-9b89-c38811011028",
+                            ConcurrencyStamp = "123d6cf9-0f4d-4290-a70e-16cdf341f0f5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "4fb7ee38-94c3-4e51-b07e-f986ba95a1e3",
+                            ConcurrencyStamp = "0c417f9a-d6d3-4409-a630-456a169878ac",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -215,6 +215,37 @@ namespace AdvertisingService.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "f3c8a0a1-500e-4741-9e2c-54ccbd9c117e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "43f067bb-60f8-4951-a2cd-6a009c286608",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAENLC13AVzOAC/y2EXdKna8vf2Je5j+yPwM7HczOyZTIkZwxo7/4QIdciwGtVvHeK+A==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "admin",
+                            FullName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "7032b60b-fd51-41eb-b50f-1a56ccd11921",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3b2e2f90-c0e1-4ec6-945f-c36e689a7199",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJEtLnTWRvn3wp9QQaA1GFJoA7adXXN6DQlDiwiGYezZSgifA1kelWmVwfNPzQlXqg==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "user"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

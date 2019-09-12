@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvertisingService.Migrations.AdvertisingService
 {
     [DbContext(typeof(AdvertisingServiceContext))]
-    [Migration("20190826170924_InitialCreate")]
+    [Migration("20190912080823_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -94,6 +94,8 @@ namespace AdvertisingService.Migrations.AdvertisingService
                     b.Property<string>("Text")
                         .IsRequired();
 
+                    b.Property<string>("UserId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Advertisings");
@@ -131,7 +133,7 @@ namespace AdvertisingService.Migrations.AdvertisingService
                             Id = 4,
                             AdvertisingCategoryId = 2,
                             AdvertisingName = "Прицеп бортовой легковой ССT 7132-08",
-                            ImagePath = "https://static.av.by/public_images/big/013/19/88/public_13198885_b_1831a02.jpeg",
+                            ImagePath = "http://images.slanet.by/~src8356904/Pricep_bortovoj_legkovoj_SST-7132-08_K.jpg",
                             ItemPrice = "1750 р.",
                             Text = "Прицеп новый. Полностью оцинкованный кузов.Подвеска рессоры+амортизаторы. Обращаться +12345678945"
                         },

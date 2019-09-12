@@ -11,4 +11,6 @@ export class Advertising {
     public itemPrice: string;
 
     public advertisingCategoryId: number;
+
+    public userId: string;
 }
