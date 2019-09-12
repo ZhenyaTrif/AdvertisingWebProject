@@ -14,7 +14,7 @@ export class AdvertisingDetailsComponent implements OnInit {
   adId: number;
   private sub: any;
 
-  constructor(private service: AdvertisingService, private route: ActivatedRoute) { }
+  constructor(public service: AdvertisingService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -24,7 +24,7 @@ export class AdvertisingDetailsComponent implements OnInit {
     this.getDetails();
   }
 
-  getDetails(){
+  getDetails() {
     this.service.getAdDetails(this.adId).subscribe(
       res => {
         this.adDetails = res;

@@ -158,12 +158,29 @@ namespace AdvertisingService.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1", "6e10fbed-ca4d-4995-9b89-c38811011028", "Admin", "ADMIN" });
+                values: new object[,]
+                {
+                    { "1", "123d6cf9-0f4d-4290-a70e-16cdf341f0f5", "Admin", "ADMIN" },
+                    { "2", "0c417f9a-d6d3-4409-a630-456a169878ac", "User", "USER" }
+                });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2", "4fb7ee38-94c3-4e51-b07e-f986ba95a1e3", "User", "USER" });
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "FullName" },
+                values: new object[,]
+                {
+                    { "f3c8a0a1-500e-4741-9e2c-54ccbd9c117e", 0, "43f067bb-60f8-4951-a2cd-6a009c286608", "ApplicationUser", "admin@admin.com", false, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAEAACcQAAAAENLC13AVzOAC/y2EXdKna8vf2Je5j+yPwM7HczOyZTIkZwxo7/4QIdciwGtVvHeK+A==", null, false, null, false, "admin", "Admin" },
+                    { "7032b60b-fd51-41eb-b50f-1a56ccd11921", 0, "3b2e2f90-c0e1-4ec6-945f-c36e689a7199", "ApplicationUser", null, false, false, null, null, "USER", "AQAAAAEAACcQAAAAEJEtLnTWRvn3wp9QQaA1GFJoA7adXXN6DQlDiwiGYezZSgifA1kelWmVwfNPzQlXqg==", null, false, null, false, "user", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[,]
+                {
+                    { "f3c8a0a1-500e-4741-9e2c-54ccbd9c117e", "1" },
+                    { "7032b60b-fd51-41eb-b50f-1a56ccd11921", "2" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

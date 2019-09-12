@@ -10,32 +10,30 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(public service:UserService, private toastr: ToastrService, private router: Router) { }
+  constructor(public service: UserService, public toastr: ToastrService, public router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token') != null){
+    if (localStorage.getItem('token') != null) {
       this.router.navigate(['/home']);
-    }
-    else{
+    } else {
       this.service.formModel.reset();
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     this.service.register().subscribe(
-      (res:any) => {
-        if(res.succeeded){
+      (res: any) => {
+        if (res.succeeded) {
           this.service.formModel.reset();
           this.toastr.success('Новый пользователь зарегистрирован.', 'Регистрация прошла успешно.');
-        }
-        else{
+        } else {
           res.errors.forEach(element => {
-            switch(element.code){
-              case 'DuplicateUserName':{
+            switch (element.code) {
+              case 'DuplicateUserName': {
                 this.toastr.error('Такое Имя пользователя уже используется.', 'Регистрация отменена.');
                 break;
               }
-              default:{
+              default: {
                 this.toastr.error(element.description, 'Регистрация отменена.');
                 break;
               }

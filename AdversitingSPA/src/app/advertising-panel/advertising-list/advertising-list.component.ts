@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AdvertisingService } from 'src/app/shared/advertising.service';
-import { Advertising } from '../models/advertising';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -11,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AdvertisingListComponent implements OnInit {
 
-  constructor(private service: AdvertisingService, private router: Router) { }
+  constructor(public service: AdvertisingService, private router: Router) { }
 
   ngOnInit() {
 
@@ -28,24 +27,26 @@ export class AdvertisingListComponent implements OnInit {
         selectedCategory: 0,
         selectedTitle: ''
       }
-    }
+    };
 
     this.service.toPage(1);
   }
 
-  toNextPage(){
-    if(this.service.pageInfo.pageModel.pageNumber < this.service.pageInfo.pageModel.totalPages){
-      this.service.toFilteredPage(this.service.pageInfo.filterModel.selectedCategory, this.service.pageInfo.filterModel.selectedTitle, this.service.pageInfo.pageModel.pageNumber + 1);
+  toNextPage() {
+    if (this.service.pageInfo.pageModel.pageNumber < this.service.pageInfo.pageModel.totalPages) {
+      this.service.toFilteredPage(this.service.pageInfo.filterModel.selectedCategory,
+        this.service.pageInfo.filterModel.selectedTitle, this.service.pageInfo.pageModel.pageNumber + 1);
     }
   }
 
-  toPreviousPage(){
-    if(this.service.pageInfo.pageModel.pageNumber != 1){
-      this.service.toFilteredPage(this.service.pageInfo.filterModel.selectedCategory, this.service.pageInfo.filterModel.selectedTitle, this.service.pageInfo.pageModel.pageNumber - 1);
+  toPreviousPage() {
+    if (this.service.pageInfo.pageModel.pageNumber !== 1) {
+      this.service.toFilteredPage(this.service.pageInfo.filterModel.selectedCategory,
+        this.service.pageInfo.filterModel.selectedTitle, this.service.pageInfo.pageModel.pageNumber - 1);
     }
   }
 
-  onSearch(form: NgForm){
+  onSearch(form: NgForm) {
     this.service.toFilteredPage(form.value.selectedCategory, form.value.searchTitle, 1);
   }
 }

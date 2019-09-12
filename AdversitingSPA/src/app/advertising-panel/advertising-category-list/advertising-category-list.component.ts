@@ -9,7 +9,7 @@ import { AdvertisingCategory } from '../models/advertisingCategory';
 })
 export class AdvertisingCategoryListComponent implements OnInit {
 
-  constructor(private service: AdvertisingService) { }
+  constructor(public service: AdvertisingService) { }
 
   ngOnInit() {
     this.service.updateCList();

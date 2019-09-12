@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,26 +9,38 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  visibility: boolean = false;
-  admin: boolean = true; 
+  visibility: boolean;
+  adminVis: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: UserService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token') != null){
-      this.visibility = false;
-    }
-    else{
+    if (localStorage.getItem('token') != null) {
       this.visibility = true;
+      this.adminVis = this.checkOnAdminRole();
+    } else {
+      this.visibility = false;
+      this.adminVis = false;
     }
   }
 
-  onLogout(){
-    localStorage.removeItem('token');
-    window.location.href = "user/login";
+  checkOnAdminRole(): boolean {
+    let isMatch = false;
+    let payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    let userRole = payLoad.role;
+    if (userRole === 'Admin') {
+      isMatch = true;
+      return isMatch;
+    }
+    return isMatch;
   }
 
-  createAd(){
+  onLogout() {
+    localStorage.removeItem('token');
+    window.location.href = 'user/login';
+  }
+
+  createAd() {
     this.router.navigate(['/ad-create']);
   }
 }

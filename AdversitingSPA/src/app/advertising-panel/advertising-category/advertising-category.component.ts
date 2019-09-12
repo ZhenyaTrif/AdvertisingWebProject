@@ -10,37 +10,36 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdvertisingCategoryComponent implements OnInit {
 
-  constructor(private service: AdvertisingService, private toastr: ToastrService) { }
+  constructor(public service: AdvertisingService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.resetForm();
   }
 
-  resetForm(form?: NgForm){
+  resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
     }
     this.service.formCData = {
       id: 0,
       categoryName: ''
-    }
+    };
   }
 
-  onSubmit(form: NgForm){
-    if(this.service.formCData.id == 0){
+  onSubmit(form: NgForm) {
+    if (this.service.formCData.id === 0) {
       this.insertRecord(form);
-    }
-    else{
+    } else {
       this.updateRecord(form);
     }
-    window.location.href = "admin-panel";
+    window.location.href = 'admin-panel';
   }
 
-  insertRecord(form?: NgForm){
+  insertRecord(form?: NgForm) {
     this.service.postAdCategory().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success("Категория успешно добавлена.", "Одобрено.");
+        this.toastr.success('Категория успешно добавлена.', 'Одобрено.');
       },
       err => {
         console.log(err);
@@ -48,11 +47,11 @@ export class AdvertisingCategoryComponent implements OnInit {
     );
   }
 
-  updateRecord(form?: NgForm){
+  updateRecord(form?: NgForm) {
     this.service.putAdCategory().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success("Категория успешно изменена.", "Одобрено.");
+        this.toastr.success('Категория успешно изменена.', 'Одобрено.');
       },
       err => {
         console.log(err);

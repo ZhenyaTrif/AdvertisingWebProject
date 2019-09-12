@@ -11,30 +11,29 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  formModel={
+  formModel = {
     UserName: '',
     Password: ''
-  }
+  };
 
   constructor(private service: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
-    if(localStorage.getItem('token') != null){
+    if (localStorage.getItem('token') != null) {
       this.router.navigate(['/home']);
     }
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
     this.service.login(form.value).subscribe(
-      (res: any)=>{
+      (res: any) => {
         localStorage.setItem('token', res.token);
-        window.location.href = "home";
+        window.location.href = 'home';
       },
-      (err: any)=>{
-        if(err.status == 400){
+      (err: any) => {
+        if (err.status === 400) {
           this.toastr.error('Неверное Имя пользователя или пароль.', 'Ошибка авторизации.');
-        }
-        else{
+        } else {
           console.log(err);
         }
       }

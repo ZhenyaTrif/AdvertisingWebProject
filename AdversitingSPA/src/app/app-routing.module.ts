@@ -11,16 +11,16 @@ import { AdvertisingDetailsComponent } from './advertising-panel/advertising-det
 import { AdvertisingListComponent } from './advertising-panel/advertising-list/advertising-list.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'home', pathMatch:'full'},
-  {path:'user', component: UserComponent, children:[
-    {path:'registration', component: RegistrationComponent},
-    {path:'login', component: LoginComponent},
-    {path:'profile', component: UserProfileComponent, canActivate: [AuthGuard]}
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'user', component: UserComponent, children: [
+    {path: 'registration', component: RegistrationComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]}
   ]},
-  {path:'home', component: AdvertisingListComponent},
-  {path:'ad-create', component: AdvertisingComponent, canActivate: [AuthGuard]},
-  {path:'home/ad-details/:id', component: AdvertisingDetailsComponent},
-  {path:'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: {permittedRoles:['Admin']}}
+  {path: 'home', component: AdvertisingListComponent},
+  {path: 'ad-create', component: AdvertisingComponent, canActivate: [AuthGuard]},
+  {path: 'home/ad-details/:id', component: AdvertisingDetailsComponent},
+  {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']}}
 ];
 
 @NgModule({

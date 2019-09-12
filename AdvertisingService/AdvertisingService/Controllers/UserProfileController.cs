@@ -79,21 +79,5 @@ namespace AdvertisingService.Controllers
 
             return Ok(model);
         }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Route("ForAdmin")]
-        public string GetForAdminOrModer()
-        {
-            return "Web method for Admin";
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin,User")]
-        [Route("ForUsers")]
-        public string GetForEveryone()
-        {
-            return "Web method for everyone";
-        }
     }
 }

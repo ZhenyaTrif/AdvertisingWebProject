@@ -13,8 +13,7 @@ export class UserProfileComponent implements OnInit {
 
   userDetails;
 
-
-  constructor(private router: Router, private service: UserService, private toastr: ToastrService) { }
+  constructor(private router: Router, public service: UserService, public toastr: ToastrService) { }
 
   ngOnInit() {
     this.service.getUserProfile().subscribe(
@@ -33,15 +32,15 @@ export class UserProfileComponent implements OnInit {
       form.resetForm();
     }
     this.service.passModel = {
-      newPassword: ""
-    }
+      newPassword: ''
+    };
   }
 
-  changePassword(form: NgForm){
+  changePassword(form: NgForm) {
     this.service.changePassword(form.value).subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success("Пароль изменён.", "Одобрено.");
+        this.toastr.success('Пароль изменён.', 'Одобрено.');
       },
       err => {
         console.log(err);

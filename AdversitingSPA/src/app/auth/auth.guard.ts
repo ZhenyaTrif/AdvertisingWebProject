@@ -6,22 +6,20 @@ import { UserService } from '../shared/user.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  
+
   constructor(private router: Router, private service: UserService) {
-    
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(localStorage.getItem('token') != null){
-      
+    if (localStorage.getItem('token') != null) {
+
       let roles = next.data['permittedRoles'] as Array<string>;
 
-      if(roles){
-        if(this.service.roleMatch(roles)){
+      if (roles) {
+        if (this.service.roleMatch(roles)) {
           console.log('success');
           return true;
-        }
-        else{
+        } else {
           console.log('fail');
           this.router.navigate(['/user/login']);
           return false;
@@ -29,8 +27,7 @@ export class AuthGuard implements CanActivate {
       }
 
       return true;
-    }
-    else{
+    } else {
       this.router.navigate(['/user/login']);
       return false;
     }

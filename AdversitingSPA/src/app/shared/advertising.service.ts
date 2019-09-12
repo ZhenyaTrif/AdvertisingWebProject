@@ -12,6 +12,8 @@ export class AdvertisingService {
   list: Advertising[];
   clist: AdvertisingCategory[];
 
+  personalList: Advertising[];
+
   pageInfo: PageInfo;
 
   formData: Advertising;
@@ -22,10 +24,9 @@ export class AdvertisingService {
   constructor(private http: HttpClient) { }
 
   postAdvertising(formData: Advertising) {
-    return this.http.post(this.BaseURL + "/AdvertisingModels", formData);
+    return this.http.post(this.BaseURL + '/AdvertisingModels', formData);
   }
 
-  //pagination
   toPage(pageNum: number) {
     return this.http.get(this.BaseURL + '/AdvertisingModels/categoryid=0/page=' + pageNum)
       .toPromise()
@@ -33,12 +34,11 @@ export class AdvertisingService {
   }
 
   toFilteredPage(categoryId: number, title: string, pageNum: number) {
-    if (title != null && title != '') {
+    if (title != null && title !== '') {
       return this.http.get(this.BaseURL + '/AdvertisingModels/categoryid=' + categoryId + '/title=' + title + '/page=' + pageNum)
         .toPromise()
         .then(res => this.pageInfo = res as PageInfo);
-    }
-    else {
+    } else {
       return this.http.get(this.BaseURL + '/AdvertisingModels/categoryid=' + categoryId + '/page=' + pageNum)
         .toPromise()
         .then(res => this.pageInfo = res as PageInfo);
@@ -46,15 +46,19 @@ export class AdvertisingService {
   }
 
   postAdCategory() {
-    return this.http.post(this.BaseURL + "/AdvertisingCategories", this.formCData);
+    return this.http.post(this.BaseURL + '/AdvertisingCategories', this.formCData);
   }
 
   putAdCategory() {
-    return this.http.put(this.BaseURL + "/AdvertisingCategories/" + this.formCData.id, this.formCData);
+    return this.http.put(this.BaseURL + '/AdvertisingCategories/' + this.formCData.id, this.formCData);
   }
 
   deleteAdCategory(adCategoryId: number) {
-    return this.http.delete(this.BaseURL + "/AdvertisingCategories/" + adCategoryId);
+    return this.http.delete(this.BaseURL + '/AdvertisingCategories/' + adCategoryId);
+  }
+
+  deleteAd(adId: number) {
+    return this.http.delete(this.BaseURL + '/AdvertisingModels/' + adId);
   }
 
   updateList() {
@@ -73,5 +77,9 @@ export class AdvertisingService {
     return this.http.get(this.BaseURL + '/AdvertisingModels/' + id);
   }
 
-
+  getUsersAds() {
+    return this.http.get(this.BaseURL + '/AdvertisingModels/UsersAdvertisings')
+      .toPromise()
+      .then(res => this.personalList = res as Advertising[]);
+  }
 }
